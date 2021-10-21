@@ -11,6 +11,7 @@ import {
 import { QuestionService } from './question.service';
 import { CreateQuestionDto } from './dto/create-question.dto';
 import { UpdateQuestionDto } from './dto/update-question.dto';
+import { Question } from './entities/question.entity';
 
 @Controller('question')
 export class QuestionController {
@@ -45,17 +46,15 @@ export class QuestionController {
   }
 
   @Post('/pull')
-  createBulk(
+  async createBulk(
     @Body(new ParseArrayPipe({ items: CreateQuestionDto }))
     questionsDto: CreateQuestionDto[],
   ) {
-    let arrayquestion = [];
+    let arrayquestion: Question[] = [];
 
-    questionsDto.forEach((element) => {
-      let question = this.questionService.create(element);
-      arrayquestion.push(question);
+    return questionsDto.forEach(async (element) => {
+      let question = await this.questionService.create(element);
+      return question;
     });
-
-    return arrayquestion;
   }
 }

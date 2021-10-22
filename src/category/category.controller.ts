@@ -6,6 +6,7 @@ import {
   Patch,
   Param,
   Delete,
+  ParseArrayPipe,
 } from '@nestjs/common';
 import { CategoryService } from './category.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
@@ -41,5 +42,10 @@ export class CategoryController {
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.categoryService.remove(+id);
+  }
+
+  @Post('/pull')
+  async createpull(@Body(new ParseArrayPipe({ items: CreateCategoryDto })) createCategoryDto: CreateCategoryDto[]){
+    return this.categoryService.createpull(createCategoryDto)
   }
 }

@@ -5,4 +5,6 @@ export class CreateQuestionDto {
   title: string;
   @IsString()
   text: string;
+
+
 }

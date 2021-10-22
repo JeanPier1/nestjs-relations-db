@@ -31,4 +31,9 @@ export class CategoryService {
   remove(id: number) {
     return this._createRepository.delete(id);
   }
+
+  createpull(createCategoryDto:CreateCategoryDto[]){
+    return this._createRepository.save(createCategoryDto)
+  }
+
 }

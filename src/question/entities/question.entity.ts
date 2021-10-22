@@ -17,6 +17,9 @@ export class Question {
   @Column()
   text: string;
 
+  @Column({ default:'1', length:'1', type:'char'})
+  state:string;
+
   @ManyToMany(() => Category, (category) => category.questions)
   @JoinTable()
   categories: Category[];

@@ -17,11 +17,11 @@ export class QuestionService {
   }
 
   findAll() {
-    return this._questionRepository.find();
+    return this._questionRepository.find({ where: { state: '1' } });
   }
 
   findOne(id: number) {
-    return this._questionRepository.findOne(id);
+    return this._questionRepository.findOne(id, { where: { state: '1' } });
   }
 
   update(id: number, updateQuestionDto: UpdateQuestionDto) {
@@ -29,15 +29,20 @@ export class QuestionService {
   }
 
   remove(id: number) {
-    return this._questionRepository.delete(id);
+    return this._questionRepository.update(id, { state: '0' });
   }
 
-  createpull(createQuestionDto:CreateQuestionDto[]){
-    return this._questionRepository.save(createQuestionDto)
+  createpull(createQuestionDto: CreateQuestionDto[]) {
+    return this._questionRepository.save(createQuestionDto);
   }
 
-  async findAllCategoy(id:number){
-    return  await this._questionRepository.find({relations:["categories"], where:{id:id}})
+  async findAllCategoy(id: number) {
+    return await this._questionRepository
+      .createQueryBuilder('question')
+      .leftJoinAndSelect('question.categories', 'category')
+      .where("question.state = '1'")
+      .andWhere('question.id = :id', { id: id })
+      .andWhere("category.state = '1'")
+      .getMany();
   }
-
 }

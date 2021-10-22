@@ -17,11 +17,11 @@ export class CategoryService {
   }
 
   findAll() {
-    return this._createRepository.find();
+    return this._createRepository.find({ where: { state: '1' } });
   }
 
   findOne(id: number) {
-    return this._createRepository.findOne(id);
+    return this._createRepository.findOne(id, { where: { state: '1' } });
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {
@@ -29,11 +29,10 @@ export class CategoryService {
   }
 
   remove(id: number) {
-    return this._createRepository.delete(id);
+    return this._createRepository.update(id, { state: '0' });
   }
 
-  createpull(createCategoryDto:CreateCategoryDto[]){
-    return this._createRepository.save(createCategoryDto)
+  createpull(createCategoryDto: CreateCategoryDto[]) {
+    return this._createRepository.save(createCategoryDto);
   }
-
 }

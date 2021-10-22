@@ -8,6 +8,9 @@ export class Category {
   @Column()
   name: string;
 
+  @Column({ default:'1', length:'1', type:'char'})
+  state:string;
+
   @ManyToMany(() => Question, (question) => question.categories)
   questions: Question;
 }

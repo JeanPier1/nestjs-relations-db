@@ -9,5 +9,5 @@ export class Category {
   name: string;
 
   @ManyToMany(() => Question, (question) => question.categories)
-  questions: Question[];
+  questions: Question;
 }

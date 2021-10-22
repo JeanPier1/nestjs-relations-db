@@ -53,4 +53,9 @@ export class QuestionController {
 
     return this.questionService.createpull(questionsDto);
   }
+  @Get('/pull/:id')
+  findAllCategoy(@Param('id') id: string){
+    return this.questionService.findAllCategoy(+id)
+}
+
 }

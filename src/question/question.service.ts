@@ -36,4 +36,8 @@ export class QuestionService {
     return this._questionRepository.save(createQuestionDto)
   }
 
+  async findAllCategoy(id:number){
+    return  await this._questionRepository.find({relations:["categories"], where:{id:id}})
+  }
+
 }

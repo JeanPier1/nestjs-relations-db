@@ -50,11 +50,14 @@ export class QuestionController {
     @Body(new ParseArrayPipe({ items: CreateQuestionDto }))
     questionsDto: CreateQuestionDto[],
   ) {
-    let arrayquestion: Question[] = [];
+ //   let arrayquestion:Array<Question> = []
 
-    return questionsDto.forEach(async (element) => {
-      let question = await this.questionService.create(element);
-      return question;
-    });
+   // questionsDto.forEach(async (element) => {
+  //    let question = await this.questionService.create(element);
+ //     arrayquestion.push(question)
+//    });
+
+//    console.log(arrayquestion)
+    return this.questionService.createpull(questionsDto);
   }
 }

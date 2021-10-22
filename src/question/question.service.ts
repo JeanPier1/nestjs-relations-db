@@ -31,4 +31,9 @@ export class QuestionService {
   remove(id: number) {
     return this._questionRepository.delete(id);
   }
+
+  createpull(createQuestionDto:CreateQuestionDto[]){
+    return this._questionRepository.save(createQuestionDto)
+  }
+
 }

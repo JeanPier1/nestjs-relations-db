@@ -6,6 +6,9 @@ import { CategoryModule } from './category/category.module';
 import { QuestionModule } from './question/question.module';
 import { Category } from './category/entities/category.entity';
 import { Question } from './question/entities/question.entity';
+import { UserModule } from './user/user.module';
+import { RolModule } from './rol/rol.module';
+import { UserRolModule } from './user-rol/user-rol.module';
 
 @Module({
   imports: [
@@ -23,6 +26,9 @@ import { Question } from './question/entities/question.entity';
     }),
     CategoryModule,
     QuestionModule,
+    UserModule,
+    RolModule,
+    UserRolModule,
   ],
   controllers: [AppController],
   providers: [AppService],

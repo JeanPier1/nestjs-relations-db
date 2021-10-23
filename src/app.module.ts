@@ -9,6 +9,9 @@ import { Question } from './question/entities/question.entity';
 import { UserModule } from './user/user.module';
 import { RolModule } from './rol/rol.module';
 import { UserRolModule } from './user-rol/user-rol.module';
+import { Rol } from './rol/entities/rol.entity';
+import { User } from './user/entities/user.entity';
+import { UserRol } from './user-rol/entities/user-rol.entity';
 
 @Module({
   imports: [
@@ -19,7 +22,7 @@ import { UserRolModule } from './user-rol/user-rol.module';
       username: 'base_db',
       password: 'root123',
       database: 'base_db',
-      entities: [Category, Question],
+      entities: [Category, Question, Rol, User, UserRol],
       synchronize: true,
       autoLoadEntities: true,
       logging: true,

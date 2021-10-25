@@ -7,5 +7,5 @@ export class CreateQuestionDto {
   @IsString()
   text: string;
   @Validate(Category)
-  categories:Category[] 
+  categories: Category[];
 }
